@@ -5,16 +5,16 @@ from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage
 
 # 微信Key
-appID = 'wx7d6cc98124f0149f'
-appsecret = '2d8eececc62002cf941b50be3d8da911'
+appID = ''
+appsecret = ''
 # 关注的成员ID
-user_id = 'ohW5U6kZ_q00GnkJ5fYZWalpYEZo'
+user_id = ''
 # 天行数据
-key = '4d1c9152a5db104504242912ff58b5cc'
+key = ''
 # 心知天气
-zxkey = 'SiPRODFFnHm7MghEe'
+zxkey = ''
 # 高德key
-gdkey = '92ee79d2458de71870ae780753e5b84d'
+gdkey = ''
 # 中午
 zhongwu = '午饭时间到啦，准备吃点什么好吃的呢'
 # 下午
@@ -270,7 +270,7 @@ wm = WeChatMessage(client)
 
 if "00:00:00" < nowDate < "11:00:00":
     # 微信消息模板 ID
-    template_id = 'vFVgbYnYguCWk6WLG1roWK5iRo7WmTIKpURX8wpSZlQ'
+    template_id = ''
     # 自定义的内容
     data = {
         "getSayLove": {"value": getSayLove, "color": get_random_color()},
@@ -294,7 +294,7 @@ if "00:00:00" < nowDate < "11:00:00":
     }
 
 if "11:00:00" < nowDate < "14:00:00":
-    template_id = 'oBKsJQfAt7ynTpPVwElxo16GRMstZaEuEGe4OhdeYVQ'
+    template_id = ''
     data = {
         "getSayLove": {"value": getSayLove, "color": get_random_color()},
         "nowDate": {"value": nowDate, "color": get_random_color()},
@@ -303,7 +303,7 @@ if "11:00:00" < nowDate < "14:00:00":
         "getcaihongpi": {"value": getcaihongpi, "color": get_random_color()},
     }
 if "14:00:00" < nowDate < "18:00:00":
-    template_id = 'Url-o5QrF2WzcydzGAiT1YGq6-kNC53cAGLEhctWADg'
+    template_id = ''
     data = {
         "getSayLove": {"value": getSayLove, "color": get_random_color()},
         "nowDate": {"value": nowDate, "color": get_random_color()},
@@ -312,7 +312,7 @@ if "14:00:00" < nowDate < "18:00:00":
         "getone": {"value": getone, "color": get_random_color()},
     }
 if "18:00:00" < nowDate < "24:00:00":
-    template_id = 'ffQuwZU8u-t857fjxPr6TmWZOgCQlt9620vOpW0mq6U'
+    template_id = ''
     data = {
         "getSayLove": {"value": getSayLove, "color": get_random_color()},
         "nowDate": {"value": nowDate, "color": get_random_color()},
