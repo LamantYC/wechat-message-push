@@ -5,21 +5,26 @@ from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage
 
 # 微信Key
-appID = ''
-appsecret = ''
+appID = 'wx7d6cc98124f0149f'
+appsecret = '2d8eececc62002cf941b50be3d8da911'
 # 关注的成员ID
-user_id = ''
+user_id = 'ohW5U6kZ_q00GnkJ5fYZWalpYEZo'
 # 天行数据
-key = ''
+key = '4d1c9152a5db104504242912ff58b5cc'
 # 心知天气
-zxkey = ''
+zxkey = 'SiPRODFFnHm7MghEe'
 # 高德key
-gdkey = ''
+gdkey = '92ee79d2458de71870ae780753e5b84d'
+# 中午
+zhongwu = '午饭时间到啦，准备吃点什么好吃的呢'
+# 下午
+xiawu = '要下班啦，辛苦的一天就要结束啦，晚上准备怎样好好的犒劳自己呢'
 
 currentTime = time.strftime("%Y-%m-%d", time.localtime(time.time()))
 nowDate = time.strftime("%H:%M:%S", time.localtime(time.time()))
 
 
+# 获取中文星期
 def getweek():
     weekEng = time.strftime("%A", time.localtime(time.time()))
     week_list = {
@@ -77,19 +82,27 @@ dayweather = getcitytqall['forecasts'][0]['casts'][0]['dayweather']
 nightweather = getcitytqall['forecasts'][0]['casts'][0]['nightweather']
 daytemp = getcitytqall['forecasts'][0]['casts'][0]['daytemp']
 nighttemp = getcitytqall['forecasts'][0]['casts'][0]['nighttemp']
+#明天数据
+tdayweather = getcitytqall['forecasts'][0]['casts'][1]['dayweather']
+tnightweather = getcitytqall['forecasts'][0]['casts'][1]['nightweather']
+tdaytemp = getcitytqall['forecasts'][0]['casts'][1]['daytemp']
+tnighttemp = getcitytqall['forecasts'][0]['casts'][1]['nighttemp']
+tdaywind = getcitytqall['forecasts'][0]['casts'][1]['daywind']
+tnightwind = getcitytqall['forecasts'][0]['casts'][1]['nightwind']
 
-print('--------', '\n', '城市:', address, '\n', '天气:', weather, '\n', '当下温度:', temperature + '℃', '\n', '风向:',
-      winddirection, '\n', '风速:', windpower)
-print('--------')
-print(getcitytqall['forecasts'][0]['casts'][0]['dayweather'])
-print(getcitytqall['forecasts'][0]['casts'][0]['nightweather'])
-print(getcitytqall['forecasts'][0]['casts'][0]['daytemp'])
-print(getcitytqall['forecasts'][0]['casts'][0]['nighttemp'])
-print('--------')
-print(getcitytqall['forecasts'][0]['casts'][1]['dayweather'])
-print(getcitytqall['forecasts'][0]['casts'][1]['nightweather'])
-print(getcitytqall['forecasts'][0]['casts'][1]['daytemp'])
-print(getcitytqall['forecasts'][0]['casts'][1]['nighttemp'])
+# print('--------', '\n', '城市:', address, '\n', '天气:', weather, '\n', '当下温度:', temperature + '℃', '\n', '风向:',
+#       winddirection, '\n', '风速:', windpower)
+# print(getcitytqall['forecasts'][0]['casts'][1])
+# print('--------')
+# print(getcitytqall['forecasts'][0]['casts'][0]['dayweather'])
+# print(getcitytqall['forecasts'][0]['casts'][0]['nightweather'])
+# print(getcitytqall['forecasts'][0]['casts'][0]['daytemp'])
+# print(getcitytqall['forecasts'][0]['casts'][0]['nighttemp'])
+# print('--------')
+# print(getcitytqall['forecasts'][0]['casts'][1]['dayweather'])
+# print(getcitytqall['forecasts'][0]['casts'][1]['nightweather'])
+# print(getcitytqall['forecasts'][0]['casts'][1]['daytemp'])
+# print(getcitytqall['forecasts'][0]['casts'][1]['nighttemp'])
 
 
 # 随机颜色
@@ -255,7 +268,7 @@ getone = getone()
 client = WeChatClient(appID, appsecret)
 wm = WeChatMessage(client)
 
-if "06:00:00" < nowDate < "11:00:00":
+if "00:00:00" < nowDate < "11:00:00":
     # 微信消息模板 ID
     template_id = 'vFVgbYnYguCWk6WLG1roWK5iRo7WmTIKpURX8wpSZlQ'
     # 自定义的内容
@@ -280,42 +293,46 @@ if "06:00:00" < nowDate < "11:00:00":
         "transl": {"value": getlzmy['transl'], "color": get_random_color()},
     }
 
-# if "11:00:00" < nowDate < "14:00:00":
-#     template_id = 'fvxNrCL9nq3MMxi_DstlnKkBtsnpsYAm62wxURWe2NY'
-#     data = {
-#         "nowDate": {"value": nowDate, "color": get_random_color()},
-#         "week": {"value": getweek(), "color": get_random_color()},
-#         "city": {"value": address, "color": get_random_color()},
-#         "weather": {"value": weather, "color": get_random_color()},
-#         "kqtype": {"value": suggestion, "color": suggestioncolor()},
-#         "tem": {"value": temperature + '℃', "color": get_random_color()},
-#     }
-# if "14:00:00" < nowDate < "18:00:00":
-#     template_id = 'U7ZvonOp9jRdpc9J2X7FwdjLEqs-ZogbzUnFYU9K2jY'
-#     data = {
-#         "nowDate": {"value": nowDate, "color": get_random_color()},
-#         "week": {"value": getweek(), "color": get_random_color()},
-#         "city": {"value": address, "color": get_random_color()},
-#         "weather": {"value": weather, "color": get_random_color()},
-#         "kqtype": {"value": suggestion, "color": suggestioncolor()},
-#         "tem": {"value": temperature + '℃', "color": get_random_color()},
-#     }
-# if "18:00:00" < nowDate < "24:00:00":
-#     template_id = 'M5U2l1QiNWCxN8q5LLj6LaIOPDi3T3NDHn2VLDmh2k0'
-#     data = {
-#         "nowDate": {"value": nowDate, "color": get_random_color()},
-#         "week": {"value": getweek(), "color": get_random_color()},
-#         "city": {"value": address, "color": get_random_color()},
-#         "weather": {"value": weather, "color": get_random_color()},
-#         "kqtype": {"value": suggestion, "color": suggestioncolor()},
-#         "tem": {"value": temperature + '℃', "color": get_random_color()},
-#     }
-
+if "11:00:00" < nowDate < "14:00:00":
+    template_id = 'oBKsJQfAt7ynTpPVwElxo16GRMstZaEuEGe4OhdeYVQ'
+    data = {
+        "getSayLove": {"value": getSayLove, "color": get_random_color()},
+        "nowDate": {"value": nowDate, "color": get_random_color()},
+        "temperature": {"value": temperature + '℃', "color": get_random_color()},
+        "zhongwu": {"value": zhongwu, "color": get_random_color()},
+        "getcaihongpi": {"value": getcaihongpi, "color": get_random_color()},
+    }
+if "14:00:00" < nowDate < "18:00:00":
+    template_id = 'Url-o5QrF2WzcydzGAiT1YGq6-kNC53cAGLEhctWADg'
+    data = {
+        "getSayLove": {"value": getSayLove, "color": get_random_color()},
+        "nowDate": {"value": nowDate, "color": get_random_color()},
+        "temperature": {"value": temperature + '℃', "color": get_random_color()},
+        "xiawu": {"value": xiawu, "color": get_random_color()},
+        "getone": {"value": getone, "color": get_random_color()},
+    }
+if "18:00:00" < nowDate < "24:00:00":
+    template_id = 'ffQuwZU8u-t857fjxPr6TmWZOgCQlt9620vOpW0mq6U'
+    data = {
+        "getSayLove": {"value": getSayLove, "color": get_random_color()},
+        "nowDate": {"value": nowDate, "color": get_random_color()},
+        "temperature": {"value": temperature + '℃', "color": get_random_color()},
+        "address": {"value": address, "color": get_random_color()},
+        "tdayweather": {"value": tdayweather, "color": get_random_color()},
+        "tnightweather": {"value": tnightweather, "color": get_random_color()},
+        "tdaywind": {"value": tdaywind, "color": get_random_color()},
+        "tnightwind": {"value": tnightwind, "color": get_random_color()},
+        "windpower": {"value": windpower, "color": get_random_color()},
+        "tdaytemp": {"value": tdaytemp, "color": get_random_color()},
+        "tnighttemp": {"value": tnighttemp, "color": get_random_color()},
+        "getwanan": {"value": getwanan, "color": get_random_color()},
+        "getqingshi": {"value": getqingshi, "color": get_random_color()},
+    }
 
 
 resp = wm.send_template(user_id, template_id, data)
 
-print(resp)
+#print(resp)
 
 # print("当前时间：", currentTime, '-', nowDate, '-', getweek())
 # print('位置天气：', address, '-', temperature + '℃', '-', weather, '-', suggestion)
